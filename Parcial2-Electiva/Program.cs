@@ -1,4 +1,10 @@
+using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.DependencyInjection;
+using Parcial2_Electiva.Data;
 var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddDbContext<Parcial2_ElectivaContext>(options =>
+    options.UseSqlServer(builder.Configuration.GetConnectionString("Parcial2_ElectivaContext") ?? throw new InvalidOperationException("Connection string 'Parcial2_ElectivaContext' not found.")));
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
